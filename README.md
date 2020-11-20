@@ -1,6 +1,6 @@
 # Learning to Generate Novel Domains for Domain Generalization
 
-This is an unofficial PyTorch implementation of Learning to Generate Novel Domains for Domain Generalization.
+This is an unofficial PyTorch implementation of Learning to Generate Novel Domains for Domain Generalization (ECCV2020).
 
 [[arxiv]](https://arxiv.org/abs/2007.03304)
 
