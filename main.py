@@ -64,6 +64,8 @@ def get_args():
                                   help='')
     train_arg_parser.add_argument("--deterministic", type=bool, default=False,
                                   help='')
+    train_arg_parser.add_argument("--train", type=bool, default=True,
+                                  help='')
     args = train_arg_parser.parse_args()
 
 
@@ -205,6 +207,10 @@ class L2A_OT_Trainer(object):
     def C_D_loading(self):
         self.D.load_state_dict(torch.load('checkpoints/D.tar')['state'])
         self.C.load_state_dict(torch.load('checkpoints/C.tar')['state'])
+        return
+
+    def DGC_loading(self):
+        self.DGC.load_state_dict(torch.load('checkpoints/best_model_C.tar')['state'])
         return
 
     def trainG(self,T):
@@ -596,13 +602,19 @@ def main():
     args = get_args()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     trainer = L2A_OT_Trainer(args, device)
-    trainer.C_init()
-    # trainer.trainC(500)
-    trainer.D_init()
-    # trainer.trainD(200)
-    trainer.C_D_loading()
-    trainer.trainG(1000)
-    # trainer.G_visualize()
+    if args.train == True:
+        trainer.C_init()
+        # trainer.trainC(500)
+        trainer.D_init()
+        # trainer.trainD(200)
+        trainer.C_D_loading()
+        trainer.trainG(1000)
+        # trainer.G_visualize()
+    else:
+        trainer.DGC_init()
+        trainer.DGC_loading()
+        trainer.test_workflow_C(trainer.DGC, trainer.batImageGenVals, trainer.args, 0)
+
 
 if __name__ == "__main__":
     torch.backends.cudnn.benchmark = True
