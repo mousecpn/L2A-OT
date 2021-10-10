@@ -8,7 +8,7 @@ Some of the code is borrowed from https://github.com/HAHA-DL/Episodic-DG and htt
 
 #### data
 
-Please download the data from https://drive.google.com/open?id=0B6x7gtvErXgfUU1WcGY5SzdwZVk and use the official train/val split.
+Please download the data from https://drive.google.com/drive/folders/1i23DCs4TJ8LQsmBiMxsxo6qZsbhiX0gw?usp=sharing and use the official train/val split.
 
 ```
 Domain-Generalization-via-Image-Stylization
